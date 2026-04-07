@@ -1,12 +1,12 @@
 <?php
-require_once "../../helper/auth_helper.php";
+require_once __DIR__ . "/../../helper/auth_helper.php";
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require_admin();
 
 // panggil file "database.php" untuk koneksi ke database
-require_once "../../config/database.php";
+require_once __DIR__ . "/../../config/database.php";
 
 // mengecek data GET "id_siswa"
 if (isset($_GET['id'])) {
@@ -33,4 +33,5 @@ if (isset($_GET['id'])) {
         header('location: ../../main.php?module=siswa&pesan=2');
     }
 }
+
 

@@ -5,7 +5,7 @@ require_once("../../assets/vendor/dompdf/autoload.inc.php");
 use Dompdf\Dompdf;
 
 // panggil file "database.php" untuk koneksi ke database
-require_once "../../config/database.php";
+require_once __DIR__ . "/../../config/database.php";
 // panggil file "fungsi_tanggal_indo.php" untuk membuat format tanggal indonesia
 require_once "../../helper/fungsi_tanggal_indo.php";
 
@@ -104,4 +104,5 @@ $dompdf->setPaper('legal', 'landscape');
 $dompdf->render();
 // menampilkan file PDF yang dihasilkan ke browser dan berikan nama file "Laporan-Data-Siswa.pdf"
 $dompdf->stream('Laporan-Data-Siswa-Tanggal-' . $tanggal_awal . '-sd-' . $tanggal_akhir . '.pdf', array('Attachment' => 0));
+
 

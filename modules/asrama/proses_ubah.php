@@ -1,12 +1,12 @@
 <?php
-require_once "../../helper/auth_helper.php";
+require_once __DIR__ . "/../../helper/auth_helper.php";
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 require_admin();
 
 // panggil file "database.php" untuk koneksi ke database
-require_once "../../config/database.php";
+require_once __DIR__ . "/../../config/database.php";
 
 // mengecek data hasil submit dari form
 if (isset($_POST['simpan'])) {
@@ -26,4 +26,5 @@ if (isset($_POST['simpan'])) {
         header("location: ../../main.php?module=tampil_detail_asrama&id=$id_asrama&pesan=1");
     }
 }
+
 

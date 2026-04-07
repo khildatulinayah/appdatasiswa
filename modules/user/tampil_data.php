@@ -2,9 +2,9 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-require_once "../../helper/auth_helper.php";
+require_once __DIR__ . "/../../helper/auth_helper.php";
 require_admin();
-require_once "../../config/database.php";
+require_once __DIR__ . "/../../config/database.php";
 ?>
 
 <div class="d-flex flex-column flex-lg-row mb-4">
@@ -84,3 +84,4 @@ require_once "../../config/database.php";
         </table>
     </div>
 </div>
+

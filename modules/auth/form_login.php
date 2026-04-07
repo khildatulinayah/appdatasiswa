@@ -19,10 +19,10 @@
                     
                     switch($error) {
                         case 'empty':
-                            $alert_message = 'Email dan password tidak boleh kosong!';
+                            $alert_message = 'Username dan password tidak boleh kosong!';
                             break;
                         case 'invalid':
-                            $alert_message = 'Email atau password salah!';
+                            $alert_message = 'Username atau password salah!';
                             break;
                         case 'not_logged_in':
                             $alert_message = 'Anda harus login terlebih dahulu!';
@@ -48,11 +48,11 @@
                 <!-- Form Login -->
                 <form action="/modules/auth/proses_login.php" method="post" id="formLogin">
                     <div class="mb-3">
-                        <label for="email" class="form-label">
-                            <i class="fas fa-envelope me-2"></i>Email
+                        <label for="username" class="form-label">
+                            <i class="fas fa-user me-2"></i>Username
                         </label>
-                        <input type="email" class="form-control" id="email" name="email" 
-                               placeholder="Masukkan email" required>
+                        <input type="text" class="form-control" id="username" name="username" 
+                               placeholder="Masukkan username" value="<?php echo isset($_COOKIE['username']) ? htmlspecialchars($_COOKIE['username']) : ''; ?>" required>
                     </div>
 
                     <div class="mb-3">
@@ -114,4 +114,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+
 

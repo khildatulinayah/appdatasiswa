@@ -2,9 +2,9 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-require_once "../../helper/auth_helper.php";
+require_once __DIR__ . "/../../helper/auth_helper.php";
 require_admin();
-require_once "../../config/database.php";
+require_once __DIR__ . "/../../config/database.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['simpan'])) {
     $id_user = mysqli_real_escape_string($mysqli, $_POST['id_user']);
@@ -29,3 +29,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['simpan'])) {
 
 header('location: ../../main.php?module=user');
 exit();
+

@@ -1,7 +1,7 @@
 <?php
 // panggil file database untuk koneksi
-require_once "../../config/database.php";
-require_once "../../helper/auth_helper.php";
+require_once __DIR__ . "/../../config/database.php";
+require_once __DIR__ . "/../../helper/auth_helper.php";
 
 // start session
 if (session_status() === PHP_SESSION_NONE) {
@@ -9,16 +9,16 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // cek apakah form sudah di submit
-if (isset($_POST["email"]) && isset($_POST["password"])) {
+if (isset($_POST["username"]) && isset($_POST["password"])) {
     // ambil data dari form
-    $email = clean_input($_POST["email"]);
+    $username = clean_input($_POST["username"]);
     $password = clean_input($_POST["password"]);
     
-    // cek apakah email dan password tidak kosong
-    if (!empty($email) && !empty($password)) {
-        // query untuk mencari user berdasarkan email
-        $email_safe = mysqli_real_escape_string($mysqli, $email);
-        $query = "SELECT * FROM user WHERE email = '$email_safe'";
+    // cek apakah username dan password tidak kosong
+    if (!empty($username) && !empty($password)) {
+        // query untuk mencari user berdasarkan username
+        $username_safe = mysqli_real_escape_string($mysqli, $username);
+        $query = "SELECT * FROM user WHERE username = '$username_safe'";
         $result = mysqli_query($mysqli, $query);
         
         if (mysqli_num_rows($result) == 1) {
@@ -34,11 +34,11 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
                 $_SESSION["level"] = $user["level"];
                 $_SESSION["login"] = true;
                 
-                // cek remember me (hanya simpan email)
+                // cek remember me (hanya simpan username)
                 if (isset($_POST["remember"])) {
-                    setcookie("email", $email, time() + (30 * 24 * 60 * 60), "/");
-                } elseif (isset($_COOKIE["email"])) {
-                    setcookie("email", "", time() - 3600, "/");
+                    setcookie("username", $user["username"], time() + (30 * 24 * 60 * 60), "/");
+                } elseif (isset($_COOKIE["username"])) {
+                    setcookie("username", "", time() - 3600, "/");
                 }
                 
                 // alihkan ke halaman dashboard
@@ -65,4 +65,5 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
     exit();
 }
 ?>
+
 

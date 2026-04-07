@@ -1,6 +1,6 @@
 <?php
 // panggil file database untuk koneksi
-require_once "../../config/database.php";
+require_once __DIR__ . "/../../config/database.php";
 
 // start session
 session_start();
@@ -79,4 +79,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 }
 ?>
+
 

@@ -78,3 +78,4 @@ if (isset($_GET['pesan'])) {
     <h6 class="text-muted fw-light mb-2">Deskripsi</h6>
     <p class="mb-4 fw-light text-justify"><?php echo $data['deskripsi']; ?></p>
 </div>
+
