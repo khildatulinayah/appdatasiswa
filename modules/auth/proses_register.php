@@ -13,10 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = mysqli_real_escape_string($mysqli, trim($_POST["email"]));
     $password = mysqli_real_escape_string($mysqli, trim($_POST["password"]));
     $password_confirm = mysqli_real_escape_string($mysqli, trim($_POST["password_confirm"]));
-    $level = mysqli_real_escape_string($mysqli, trim($_POST["level"]));
     
     // validasi input
-    if (empty($nama_lengkap) || empty($username) || empty($email) || empty($password) || empty($password_confirm) || empty($level)) {
+    if (empty($nama_lengkap) || empty($username) || empty($email) || empty($password) || empty($password_confirm)) {
         header("location: /register.php?error=empty");
         exit();
     }
@@ -60,9 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // hash password
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
     
-    // query insert user baru
+    // query insert user baru sebagai role user
     $query = "INSERT INTO user (username, password, nama_lengkap, email, level) 
-              VALUES ('$username', '$password_hash', '$nama_lengkap', '$email', '$level')";
+              VALUES ('$username', '$password_hash', '$nama_lengkap', '$email', 'user')";
     
     // eksekusi query
     if (mysqli_query($mysqli, $query)) {

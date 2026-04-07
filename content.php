@@ -61,15 +61,15 @@ elseif ($module == 'siswa') {
 }
 // jika module yang dipilih "form_entri_siswa"
 elseif ($module == 'form_entri_siswa') {
-    // harus login untuk mengakses form entri siswa
-    require_login();
+    // hanya admin yang bisa mengakses form entri siswa
+    require_admin();
     // panggil file form entri siswa
     include "modules/siswa/form_entri.php";
 }
 // jika module yang dipilih "form_ubah_siswa"
 elseif ($module == 'form_ubah_siswa') {
-    // harus login untuk mengakses form ubah siswa
-    require_login();
+    // hanya admin yang bisa mengakses form ubah siswa
+    require_admin();
     // panggil file form ubah siswa
     include "modules/siswa/form_ubah.php";
 }
@@ -96,15 +96,15 @@ elseif ($module == 'asrama') {
 }
 // jika module yang dipilih "form_entri_asrama"
 elseif ($module == 'form_entri_asrama') {
-    // harus login untuk mengakses form entri asrama
-    require_login();
+    // hanya admin yang bisa mengakses form entri asrama
+    require_admin();
     // panggil file form entri asrama
     include "modules/asrama/form_entri.php";
 }
 // jika module yang dipilih "form_ubah_asrama"
 elseif ($module == 'form_ubah_asrama') {
-    // harus login untuk mengakses form ubah asrama
-    require_login();
+    // hanya admin yang bisa mengakses form ubah asrama
+    require_admin();
     // panggil file form ubah asrama
     include "modules/asrama/form_ubah.php";
 }
@@ -121,6 +121,20 @@ elseif ($module == 'tampil_pencarian_asrama') {
     require_login();
     // panggil file tampil pencarian asrama
     include "modules/asrama/tampil_pencarian.php";
+}
+// jika module yang dipilih "user"
+elseif ($module == 'user') {
+    // hanya admin yang bisa mengakses manajemen pengguna
+    require_admin();
+    // panggil file tampil data pengguna
+    include "modules/user/tampil_data.php";
+}
+// jika module yang dipilih "form_ubah_user"
+elseif ($module == 'form_ubah_user') {
+    // hanya admin yang bisa mengakses form ubah role user
+    require_admin();
+    // panggil file form ubah user
+    include "modules/user/form_ubah.php";
 }
 // jika module yang dipilih "laporan"
 elseif ($module == 'laporan') {

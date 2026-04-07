@@ -20,9 +20,11 @@
     <div class="row flex-lg-row-reverse align-items-center">
         <!-- button entri data -->
         <div class="col-lg-5 col-xl-3">
-            <a href="?module=form_entri_asrama" class="btn btn-outline-brand float-lg-end px-4 mb-4 mb-lg-0">
-                <i class="fa-solid fa-plus me-2"></i> Entri Asrama
-            </a>
+            <?php if (is_admin()) { ?>
+                <a href="?module=form_entri_asrama" class="btn btn-outline-brand float-lg-end px-4 mb-4 mb-lg-0">
+                    <i class="fa-solid fa-plus me-2"></i> Entri Asrama
+                </a>
+            <?php } ?>
         </div>
         <!-- form pencarian -->
         <div class="col-lg-7 col-xl-9">
@@ -86,7 +88,20 @@ if (isset($_GET['pesan'])) {
             <div class="col-lg-6 col-xl-3">
                 <div class="bg-white rounded-4 shadow-sm text-center p-4 p-lg-4-2 mb-4">
                     <div class="foto-profil mb-2">
-                        <i class="fa-solid fa-house icon-widget-asrama"></i>
+                        <?php
+                        // cek apakah ada gambar asrama
+                        $nama_asrama_lower = strtolower($data['nama_asrama']);
+                        $gambar_path = "assets/img/{$nama_asrama_lower}.jpg";
+                        $gambar_path_png = "assets/img/{$nama_asrama_lower}.png";
+
+                        if (file_exists($gambar_path)) {
+                            echo "<img src='{$gambar_path}' alt='{$data['nama_asrama']}' class='img-fluid rounded-circle' style='width: 80px; height: 80px; object-fit: cover;'>";
+                        } elseif (file_exists($gambar_path_png)) {
+                            echo "<img src='{$gambar_path_png}' alt='{$data['nama_asrama']}' class='img-fluid rounded-circle' style='width: 80px; height: 80px; object-fit: cover;'>";
+                        } else {
+                            echo "<i class='fa-solid fa-house icon-widget-asrama'></i>";
+                        }
+                        ?>
                     </div>
                     <p class="text-muted mb-2">Asrama</p>
                     <h6 class="mb-4"><?php echo $data['nama_asrama']; ?></h6>

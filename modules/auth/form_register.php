@@ -5,7 +5,7 @@
             <div class="card-body p-5">
                 <!-- Header -->
                 <div class="text-center mb-4">
-                    <img src="assets/img/hogwards-logo.svg" alt="Hogwards Logo" width="80" class="mb-3">
+                    <img src="assets/img/hogwardslogo.jpg" alt="Hogwards Logo" width="90" class="mb-3">
                     <h3 class="fw-bold">Buat Akun Baru</h3>
                     <p class="text-muted">Daftar untuk mengakses aplikasi siswa</p>
                 </div>
@@ -105,15 +105,8 @@
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="level" class="form-label">
-                            <i class="fas fa-user-shield me-2"></i>Level User
-                        </label>
-                        <select class="form-select" id="level" name="level" required>
-                            <option value="">Pilih Level</option>
-                            <option value="user">User</option>
-                            <option value="admin">Admin</option>
-                        </select>
+                    <div class="mb-3 text-muted small">
+                        Registrasi baru akan disimpan sebagai role <strong>User</strong>. Hanya admin yang dapat mengubah role akun nanti.
                     </div>
 
                     <div class="mb-3 form-check">

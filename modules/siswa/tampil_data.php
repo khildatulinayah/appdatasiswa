@@ -20,9 +20,11 @@
     <div class="row flex-lg-row-reverse align-items-center">
         <!-- button entri data -->
         <div class="col-lg-5 col-xl-3">
-            <a href="?module=form_entri_siswa" class="btn btn-outline-brand float-lg-end px-4 mb-4 mb-lg-0">
-                <i class="fa-solid fa-plus me-2"></i> Entri Siswa
-            </a>
+            <?php if (is_admin()) { ?>
+                <a href="?module=form_entri_siswa" class="btn btn-outline-brand float-lg-end px-4 mb-4 mb-lg-0">
+                    <i class="fa-solid fa-plus me-2"></i> Entri Siswa
+                </a>
+            <?php } ?>
         </div>
         <!-- form pencarian -->
         <div class="col-lg-7 col-xl-9">

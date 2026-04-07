@@ -1,4 +1,10 @@
 <?php
+require_once "../../helper/auth_helper.php";
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+require_admin();
+
 // panggil file "database.php" untuk koneksi ke database
 require_once "../../config/database.php";
 

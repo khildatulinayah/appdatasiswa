@@ -77,7 +77,7 @@ if ($module == 'logout') {
         <!-- Brand -->
         <div class="brand text-center mb-5">
             <!-- Logo -->
-            <img src="assets/img/hogwards-logo.svg" alt="Hogwards Logo">
+            <img src="assets/img/hogwardslogo.jpg" alt="Hogwards Logo">
             <!-- Title -->
             <h3 class="mt-4 mb-3"> Hogwards </h3>
         </div>

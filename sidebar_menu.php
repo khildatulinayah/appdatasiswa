@@ -87,7 +87,24 @@ else { ?>
 	</div>
 <?php
 }
+?>
 
+<?php if (is_admin()) { ?>
+    <!-- menu manajemen pengguna hanya untuk admin -->
+    <?php if ($module == 'user' || $module == 'form_ubah_user') { ?>
+        <div class="item active d-flex align-items-center">
+            <i class="fa-solid fa-users-gear"></i>
+            <a href="?module=user"> Manajemen Pengguna </a>
+        </div>
+    <?php } else { ?>
+        <div class="item d-flex align-items-center">
+            <i class="fa-solid fa-users-gear"></i>
+            <a href="?module=user"> Manajemen Pengguna </a>
+        </div>
+    <?php } ?>
+<?php } ?>
+
+<?php
 // jika menu laporan dipilih, menu laporan aktif
 if ($module == 'laporan') { ?>
 	<div class="item active d-flex align-items-center">

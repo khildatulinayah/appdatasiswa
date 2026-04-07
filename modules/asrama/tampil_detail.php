@@ -33,14 +33,16 @@ if (isset($_GET['id'])) {
 <div class="mb-5">
     <div class="d-grid gap-3 d-sm-flex flex-sm-row-reverse">
         <div class="d-grid gap-3 d-sm-flex">
-            <!-- button ubah data -->
-            <a href="?module=form_ubah_asrama&id=<?php echo $data['id_asrama']; ?>" class="btn btn-outline-brand px-4">
-                <i class="fa-regular fa-pen-to-square me-2"></i> Ubah
-            </a>
-            <!-- button hapus data -->
-            <a href="modules/asrama/proses_hapus.php?id=<?php echo $data['id_asrama']; ?>" onclick="return confirm('Anda yakin ingin menghapus data asrama <?php echo $data['nama_asrama']; ?>?')" class="btn btn-outline-brand px-4">
-                <i class="fa-regular fa-trash-can me-2"></i> Hapus
-            </a>
+            <?php if (is_admin()) { ?>
+                <!-- button ubah data -->
+                <a href="?module=form_ubah_asrama&id=<?php echo $data['id_asrama']; ?>" class="btn btn-outline-brand px-4">
+                    <i class="fa-regular fa-pen-to-square me-2"></i> Ubah
+                </a>
+                <!-- button hapus data -->
+                <a href="modules/asrama/proses_hapus.php?id=<?php echo $data['id_asrama']; ?>" onclick="return confirm('Anda yakin ingin menghapus data asrama <?php echo $data['nama_asrama']; ?>?')" class="btn btn-outline-brand px-4">
+                    <i class="fa-regular fa-trash-can me-2"></i> Hapus
+                </a>
+            <?php } ?>
         </div>
         <!-- button kembali ke halaman tampil data -->
         <a href="?module=asrama" class="btn btn-outline-secondary px-4 me-sm-auto">

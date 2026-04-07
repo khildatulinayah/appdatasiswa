@@ -56,7 +56,25 @@ else { ?>
     </div>
 <?php
 }
+?>
 
+<?php if (is_admin()) { ?>
+    <?php if ($_GET['module'] == 'user' || $_GET['module'] == 'form_ubah_user') { ?>
+        <div class="col-2 item-menu active text-center">
+            <a href="?module=user">
+                <i class="fa-solid fa-users-gear"></i>
+            </a>
+        </div>
+    <?php } else { ?>
+        <div class="col-2 item-menu text-center">
+            <a href="?module=user">
+                <i class="fa-solid fa-users-gear"></i>
+            </a>
+        </div>
+    <?php } ?>
+<?php } ?>
+
+<?php
 // jika menu laporan dipilih, menu laporan aktif
 if ($_GET['module'] == 'laporan') { ?>
     <div class="col-2 item-menu active text-center">

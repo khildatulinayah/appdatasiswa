@@ -5,7 +5,7 @@
             <div class="card-body p-5">
                 <!-- Header -->
                 <div class="text-center mb-4">
-                    <img src="assets/img/hogwards-logo.svg" alt="Hogwards Logo" width="80" class="mb-3">
+                    <img src="assets/img/hogwardslogo.jpg" alt="Hogwards Logo" width="90" class="mb-3">
                     <h3 class="fw-bold">Aplikasi Siswa</h3>
                     <p class="text-muted">Silakan login untuk melanjutkan</p>
                 </div>
