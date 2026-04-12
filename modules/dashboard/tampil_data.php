@@ -60,7 +60,20 @@
         <div class="bg-white rounded-4 shadow-sm p-4 p-lg-4-2 mb-4">
             <div class="d-flex align-items-center justify-content-start">
                 <div class="me-4">
-                    <i class="fa-brands fa-html5 icon-widget"></i>
+                    <?php
+                    $asrama_slug = 'gryffindor';
+                    $img_jpg = __DIR__ . '/../../assets/img/' . $asrama_slug . '.jpg';
+                    $img_png = __DIR__ . '/../../assets/img/' . $asrama_slug . '.png';
+                    $img_url_jpg = 'assets/img/' . $asrama_slug . '.jpg';
+                    $img_url_png = 'assets/img/' . $asrama_slug . '.png';
+                    if (file_exists($img_jpg)) {
+                        echo "<img src='{$img_url_jpg}' alt='Gryffindor' class='img-fluid rounded-circle' style='width: 45px; height: 45px; object-fit: cover;'>";
+                    } elseif (file_exists($img_png)) {
+                        echo "<img src='{$img_url_png}' alt='Gryffindor' class='img-fluid rounded-circle' style='width: 45px; height: 45px; object-fit: cover;'>";
+                    } else {
+                        echo '<i class="fa-brands fa-html5 icon-widget"></i>';
+                    }
+                    ?>
                 </div>
                 <div>
                     <p class="text-muted mb-1"><small>Gryffindor</small></p>
@@ -85,7 +98,20 @@
         <div class="bg-white rounded-4 shadow-sm p-4 p-lg-4-2 mb-4">
             <div class="d-flex align-items-center justify-content-start">
                 <div class="me-4">
-                    <i class="fa-solid fa-laptop-code icon-widget"></i>
+                    <?php
+                    $asrama_slug = 'hufflepuff';
+                    $img_jpg = __DIR__ . '/../../assets/img/' . $asrama_slug . '.jpg';
+                    $img_png = __DIR__ . '/../../assets/img/' . $asrama_slug . '.png';
+                    $img_url_jpg = 'assets/img/' . $asrama_slug . '.jpg';
+                    $img_url_png = 'assets/img/' . $asrama_slug . '.png';
+                    if (file_exists($img_jpg)) {
+                        echo "<img src='{$img_url_jpg}' alt='Hufflepuff' class='img-fluid rounded-circle' style='width: 45px; height: 45px; object-fit: cover;'>";
+                    } elseif (file_exists($img_png)) {
+                        echo "<img src='{$img_url_png}' alt='Hufflepuff' class='img-fluid rounded-circle' style='width: 45px; height: 45px; object-fit: cover;'>";
+                    } else {
+                        echo '<i class="fa-solid fa-laptop-code icon-widget"></i>';
+                    }
+                    ?>
                 </div>
                 <div>
                     <p class="text-muted mb-1"><small>Hufflepuff</small></p>
@@ -110,7 +136,20 @@
         <div class="bg-white rounded-4 shadow-sm p-4 p-lg-4-2 mb-4">
             <div class="d-flex align-items-center justify-content-start">
                 <div class="text-muted me-4">
-                    <i class="fa-solid fa-mobile-screen icon-widget"></i>
+                    <?php
+                    $asrama_slug = 'ravenclaw';
+                    $img_jpg = __DIR__ . '/../../assets/img/' . $asrama_slug . '.jpg';
+                    $img_png = __DIR__ . '/../../assets/img/' . $asrama_slug . '.png';
+                    $img_url_jpg = 'assets/img/' . $asrama_slug . '.jpg';
+                    $img_url_png = 'assets/img/' . $asrama_slug . '.png';
+                    if (file_exists($img_jpg)) {
+                        echo "<img src='{$img_url_jpg}' alt='Ravenclaw' class='img-fluid rounded-circle' style='width: 45px; height: 45px; object-fit: cover;'>";
+                    } elseif (file_exists($img_png)) {
+                        echo "<img src='{$img_url_png}' alt='Ravenclaw' class='img-fluid rounded-circle' style='width: 45px; height: 45px; object-fit: cover;'>";
+                    } else {
+                        echo '<i class="fa-solid fa-mobile-screen icon-widget"></i>';
+                    }
+                    ?>
                 </div>
                 <div>
                     <p class="mb-1"><small>Ravenclaw</small></p>
@@ -135,7 +174,20 @@
         <div class="bg-white rounded-4 shadow-sm p-4 p-lg-4-2 mb-4">
             <div class="d-flex align-items-center justify-content-start">
                 <div class="text-muted me-4">
-                    <i class="fa-solid fa-gamepad icon-widget"></i>
+                    <?php
+                    $asrama_slug = 'slytherin';
+                    $img_jpg = __DIR__ . '/../../assets/img/' . $asrama_slug . '.jpg';
+                    $img_png = __DIR__ . '/../../assets/img/' . $asrama_slug . '.png';
+                    $img_url_jpg = 'assets/img/' . $asrama_slug . '.jpg';
+                    $img_url_png = 'assets/img/' . $asrama_slug . '.png';
+                    if (file_exists($img_jpg)) {
+                        echo "<img src='{$img_url_jpg}' alt='Slytherin' class='img-fluid rounded-circle' style='width: 45px; height: 45px; object-fit: cover;'>";
+                    } elseif (file_exists($img_png)) {
+                        echo "<img src='{$img_url_png}' alt='Slytherin' class='img-fluid rounded-circle' style='width: 45px; height: 45px; object-fit: cover;'>";
+                    } else {
+                        echo '<i class="fa-solid fa-gamepad icon-widget"></i>';
+                    }
+                    ?>
                 </div>
                 <div>
                     <p class="mb-1"><small>Slytherin</small></p>

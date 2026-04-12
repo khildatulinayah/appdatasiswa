@@ -23,17 +23,47 @@ require_once __DIR__ . "/../../config/database.php";
     </div>
 </div>
 
-<?php if (isset($_GET['pesan']) && $_GET['pesan'] == 1) : ?>
-    <div class="alert alert-success alert-dismissible rounded-4 fade show mb-4" role="alert">
-        <strong><i class="fa-solid fa-circle-check me-2"></i>Sukses!</strong> Role pengguna berhasil diperbarui.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-<?php elseif (isset($_GET['pesan']) && $_GET['pesan'] == 0) : ?>
-    <div class="alert alert-danger alert-dismissible rounded-4 fade show mb-4" role="alert">
-        <strong><i class="fa-solid fa-circle-exclamation me-2"></i>Error!</strong> Gagal mengubah role pengguna.
+<?php if (isset($_GET['pesan'])) : ?>
+    <?php
+        $alertClass = 'success';
+        $alertIcon = 'fa-circle-check';
+        $alertTitle = 'Sukses!';
+        $alertMessage = '';
+        switch ($_GET['pesan']) {
+            case '1':
+                $alertMessage = 'Data pengguna berhasil diperbarui.';
+                break;
+            case '2':
+                $alertMessage = 'Pengguna baru berhasil ditambahkan.';
+                break;
+            case '3':
+                $alertMessage = 'Pengguna berhasil dihapus.';
+                break;
+            case '4':
+                $alertClass = 'danger';
+                $alertIcon = 'fa-circle-exclamation';
+                $alertTitle = 'Error!';
+                $alertMessage = 'Tidak dapat menghapus akun Anda sendiri.';
+                break;
+            default:
+                $alertClass = 'danger';
+                $alertIcon = 'fa-circle-exclamation';
+                $alertTitle = 'Error!';
+                $alertMessage = 'Terjadi kesalahan. Silakan coba lagi.';
+                break;
+        }
+    ?>
+    <div class="alert alert-<?php echo $alertClass; ?> alert-dismissible rounded-4 fade show mb-4" role="alert">
+        <strong><i class="fa-solid <?php echo $alertIcon; ?> me-2"></i><?php echo $alertTitle; ?></strong> <?php echo htmlspecialchars($alertMessage); ?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 <?php endif; ?>
+
+<div class="d-flex justify-content-end mb-4">
+    <a href="?module=form_entri_user" class="btn btn-brand btn-sm">
+        <i class="fa-solid fa-plus me-2"></i> Tambah Pengguna
+    </a>
+</div>
 
 <div class="bg-white rounded-4 shadow-sm p-4 mb-4">
     <div class="table-responsive">
@@ -68,9 +98,18 @@ require_once __DIR__ . "/../../config/database.php";
                                 </span>
                             </td>
                             <td>
-                                <a href="?module=form_ubah_user&id=<?php echo $user['id_user']; ?>" class="btn btn-sm btn-outline-brand">
-                                    <i class="fa-solid fa-pen-to-square"></i> Ubah Role
+                                <a href="?module=form_ubah_user&id=<?php echo $user['id_user']; ?>" class="btn btn-sm btn-outline-brand mb-1">
+                                    <i class="fa-solid fa-pen-to-square"></i> Ubah
                                 </a>
+                                <?php if ($_SESSION['id_user'] != $user['id_user']) : ?>
+                                    <a href="/modules/user/proses_hapus.php?id=<?php echo $user['id_user']; ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna ini?');">
+                                        <i class="fa-solid fa-trash"></i> Hapus
+                                    </a>
+                                <?php else : ?>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary disabled">
+                                        <i class="fa-solid fa-trash-can"></i> Hapus
+                                    </button>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php }

@@ -143,7 +143,81 @@ Ubah redirect URLs di file:
 - Clear browser cookies dan cache
 - Check session configuration
 
-## 📝 Next Steps
+### Google OAuth2 Issues
+
+#### Error: "Konfigurasi Google OAuth2 Belum Lengkap"
+- Update file `config/google_oauth.php` dengan Google Client ID dan Client Secret
+- Pastikan credentials dari Google Cloud Console sudah benar
+
+#### Error: "Autentikasi Google gagal"
+- Pastikan Google+ API dan Google OAuth2 API sudah di-enable
+- Check redirect URI di Google Cloud Console
+- Verifikasi Client ID dan Client Secret
+
+#### Error: "Anda menolak akses Google"
+- User menolak akses Google, silakan coba lagi dan izinkan akses
+
+#### Error: "Terjadi kesalahan saat memproses login Google"
+- Check error logs untuk detail error
+- Pastikan Google API Client Library terinstall dengan benar
+- Verifikasi konfigurasi server (PHP extensions, etc.)
+
+## � Google OAuth2 Integration
+
+### Overview
+Aplikasi sekarang mendukung login dengan Google OAuth2 sebagai alternatif dari login username/password.
+
+### Setup Google OAuth2
+
+#### 1. Google Cloud Console Setup
+- Buka [Google Cloud Console](https://console.cloud.google.com/)
+- Buat project baru atau pilih project yang sudah ada
+- Enable **Google+ API** dan **Google OAuth2 API**
+- Buat **OAuth2 Client ID** dan **Client Secret**
+- Set **Authorized Redirect URI**: `http://localhost/app-siswa1/modules/auth/google_callback.php`
+
+#### 2. Konfigurasi Aplikasi
+Update file `config/google_oauth.php`:
+```php
+define('GOOGLE_CLIENT_ID', 'YOUR_GOOGLE_CLIENT_ID_HERE');
+define('GOOGLE_CLIENT_SECRET', 'YOUR_GOOGLE_CLIENT_SECRET_HERE');
+```
+
+#### 3. Database Migration
+Jalankan query berikut:
+```sql
+SOURCE database/add_google_auth_columns.sql;
+```
+
+#### 4. Testing
+Buka `http://localhost/app-siswa1/test_google_auth.php` untuk testing setup.
+
+### Fitur Google OAuth2
+
+#### Dual Authentication
+- User bisa login dengan username/password ATAU Google
+- User existing bisa link Google account ke akun mereka
+- User baru bisa register langsung via Google
+
+#### Security Features
+- Google ID token validation
+- Email verification check
+- Secure session management
+- Automatic profile picture sync
+
+#### User Experience
+- One-click Google login
+- Profile picture dari Google
+- Seamless integration dengan existing auth
+
+### File yang Ditambahkan untuk Google OAuth2
+- `config/google_oauth.php` - Konfigurasi Google OAuth2
+- `modules/auth/google_login.php` - Handler untuk redirect ke Google
+- `modules/auth/google_callback.php` - Handler untuk callback dari Google
+- `database/add_google_auth_columns.sql` - Database migration
+- `test_google_auth.php` - Testing file
+
+## �� Next Steps
 
 1. **Implementasi Email Verification**
    - Add email verification token
@@ -164,6 +238,11 @@ Ubah redirect URLs di file:
 5. **API Authentication**
    - JWT token implementation
    - API rate limiting
+
+6. **Enhanced Google Integration**
+   - Google Drive integration
+   - Google Calendar sync
+   - Google Analytics tracking
 
 ## 🤝 Kontribusi
 

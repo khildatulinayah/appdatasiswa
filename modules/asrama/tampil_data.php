@@ -89,15 +89,18 @@ if (isset($_GET['pesan'])) {
                 <div class="bg-white rounded-4 shadow-sm text-center p-4 p-lg-4-2 mb-4">
                     <div class="foto-profil mb-2">
                         <?php
-                        // cek apakah ada gambar asrama
-                        $nama_asrama_lower = strtolower($data['nama_asrama']);
-                        $gambar_path = "assets/img/{$nama_asrama_lower}.jpg";
-                        $gambar_path_png = "assets/img/{$nama_asrama_lower}.png";
+                        $nama_asrama_normalized = strtolower(trim($data['nama_asrama']));
+                        $nama_asrama_normalized = preg_replace('/[^a-z0-9]+/', '-', $nama_asrama_normalized);
+                        $nama_asrama_normalized = trim($nama_asrama_normalized, '-');
+                        $gambar_path_jpg = __DIR__ . '/../../assets/img/' . $nama_asrama_normalized . '.jpg';
+                        $gambar_path_png = __DIR__ . '/../../assets/img/' . $nama_asrama_normalized . '.png';
+                        $gambar_url_jpg = 'assets/img/' . $nama_asrama_normalized . '.jpg';
+                        $gambar_url_png = 'assets/img/' . $nama_asrama_normalized . '.png';
 
-                        if (file_exists($gambar_path)) {
-                            echo "<img src='{$gambar_path}' alt='{$data['nama_asrama']}' class='img-fluid rounded-circle' style='width: 80px; height: 80px; object-fit: cover;'>";
+                        if (file_exists($gambar_path_jpg)) {
+                            echo "<img src='{$gambar_url_jpg}' alt='{$data['nama_asrama']}' class='img-fluid rounded-circle' style='width: 80px; height: 80px; object-fit: cover;'>";
                         } elseif (file_exists($gambar_path_png)) {
-                            echo "<img src='{$gambar_path_png}' alt='{$data['nama_asrama']}' class='img-fluid rounded-circle' style='width: 80px; height: 80px; object-fit: cover;'>";
+                            echo "<img src='{$gambar_url_png}' alt='{$data['nama_asrama']}' class='img-fluid rounded-circle' style='width: 80px; height: 80px; object-fit: cover;'>";
                         } else {
                             echo "<i class='fa-solid fa-house icon-widget-asrama'></i>";
                         }

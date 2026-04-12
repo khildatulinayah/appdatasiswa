@@ -63,8 +63,24 @@
                 <div class="col-lg-6 col-xl-3">
                     <div class="bg-white rounded-4 shadow-sm text-center p-4 p-lg-4-2 mb-4">
                         <div class="foto-profil mb-2">
-                            <i class="fa-solid fa-house icon-widget-asrama"></i>
-                        </div>
+                        <?php
+                        $nama_asrama_normalized = strtolower(trim($data['nama_asrama']));
+                        $nama_asrama_normalized = preg_replace('/[^a-z0-9]+/', '-', $nama_asrama_normalized);
+                        $nama_asrama_normalized = trim($nama_asrama_normalized, '-');
+                        $gambar_path_jpg = __DIR__ . '/../../assets/img/' . $nama_asrama_normalized . '.jpg';
+                        $gambar_path_png = __DIR__ . '/../../assets/img/' . $nama_asrama_normalized . '.png';
+                        $gambar_url_jpg = 'assets/img/' . $nama_asrama_normalized . '.jpg';
+                        $gambar_url_png = 'assets/img/' . $nama_asrama_normalized . '.png';
+
+                        if (file_exists($gambar_path_jpg)) {
+                            echo "<img src='{$gambar_url_jpg}' alt='{$data['nama_asrama']}' class='img-fluid rounded-circle' style='width: 80px; height: 80px; object-fit: cover;'>";
+                        } elseif (file_exists($gambar_path_png)) {
+                            echo "<img src='{$gambar_url_png}' alt='{$data['nama_asrama']}' class='img-fluid rounded-circle' style='width: 80px; height: 80px; object-fit: cover;'>";
+                        } else {
+                            echo "<i class='fa-solid fa-house icon-widget-asrama'></i>";
+                        }
+                        ?>
+                    </div>
                         <p class="text-muted mb-2">Asrama</p>
                         <h6 class="mb-4"><?php echo $data['nama_asrama']; ?></h6>
                         <!-- button detail data -->

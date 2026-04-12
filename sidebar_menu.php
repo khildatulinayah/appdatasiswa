@@ -91,7 +91,7 @@ else { ?>
 
 <?php if (is_admin()) { ?>
     <!-- menu manajemen pengguna hanya untuk admin -->
-    <?php if ($module == 'user' || $module == 'form_ubah_user') { ?>
+    <?php if ($module == 'user' || $module == 'form_entri_user' || $module == 'form_ubah_user') { ?>
         <div class="item active d-flex align-items-center">
             <i class="fa-solid fa-users-gear"></i>
             <a href="?module=user"> Manajemen Pengguna </a>

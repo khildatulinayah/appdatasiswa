@@ -1,6 +1,7 @@
 <?php
 // panggil file database untuk koneksi
 require_once __DIR__ . "/../../config/database.php";
+require_once __DIR__ . "/../../helper/auth_helper.php";
 
 // start session
 session_start();
@@ -26,9 +27,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
     
-    // validasi panjang password
-    if (strlen($password) < 6) {
-        header("location: /register.php?error=password_short");
+    // validasi kekuatan password
+    if (!is_password_strong($password)) {
+        header("location: /register.php?error=password_weak");
+        exit();
+    }
+    
+    if (strlen($password) > 32) {
+        header("location: /register.php?error=password_long");
         exit();
     }
     

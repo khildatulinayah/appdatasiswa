@@ -46,6 +46,32 @@ elseif ($module == 'form_register') {
     include "modules/auth/form_register.php";
 }
 // jika module yang dipilih "dashboard"
+// jika module yang dipilih "form_forgot_password"
+elseif ($module == 'form_forgot_password') {
+    if (basename($_SERVER['SCRIPT_NAME']) === 'main.php') {
+        header('location: forgot_password.php');
+        exit();
+    }
+    // jika sudah login, alihkan ke dashboard
+    if (is_login()) {
+        header('location: main.php?module=dashboard');
+        exit();
+    }
+    include "modules/auth/form_forgot_password.php";
+}
+// jika module yang dipilih "form_reset_password"
+elseif ($module == 'form_reset_password') {
+    if (basename($_SERVER['SCRIPT_NAME']) === 'main.php') {
+        header('location: reset_password.php');
+        exit();
+    }
+    // jika sudah login, alihkan ke dashboard
+    if (is_login()) {
+        header('location: main.php?module=dashboard');
+        exit();
+    }
+    include "modules/auth/form_reset_password.php";
+}
 elseif ($module == 'dashboard') {
     // harus login untuk mengakses dashboard
     require_login();
@@ -128,8 +154,13 @@ elseif ($module == 'user') {
     require_admin();
     // panggil file tampil data pengguna
     include "modules/user/tampil_data.php";
-}
-// jika module yang dipilih "form_ubah_user"
+}// jika module yang dipilih "form_entri_user"
+elseif ($module == 'form_entri_user') {
+    // hanya admin yang bisa mengakses form entri user
+    require_admin();
+    // panggil file form entri user
+    include "modules/user/form_entri.php";
+}// jika module yang dipilih "form_ubah_user"
 elseif ($module == 'form_ubah_user') {
     // hanya admin yang bisa mengakses form ubah role user
     require_admin();

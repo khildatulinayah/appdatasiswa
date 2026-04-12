@@ -33,8 +33,23 @@
                         case 'invalid_email':
                             $alert_message = 'Format email tidak valid!';
                             break;
-                        case 'password_short':
-                            $alert_message = 'Password minimal 6 karakter!';
+                        case 'password_weak':
+                            $alert_message = 'Password harus 8-32 karakter, dan mengandung huruf besar, huruf kecil, serta angka!';
+                            break;
+                        case 'password_long':
+                            $alert_message = 'Password maksimal 32 karakter!';
+                            break;
+                        case 'google_auth_failed':
+                            $alert_message = 'Autentikasi Google gagal. Silakan coba lagi.';
+                            break;
+                        case 'google_denied':
+                            $alert_message = 'Anda menolak akses Google. Silakan coba lagi.';
+                            break;
+                        case 'google_no_code':
+                            $alert_message = 'Tidak ada kode otorisasi dari Google. Silakan coba lagi.';
+                            break;
+                        case 'google_callback_failed':
+                            $alert_message = 'Terjadi kesalahan saat memproses registrasi Google. Silakan coba lagi.';
                             break;
                         default:
                             $alert_message = 'Terjadi kesalahan. Silakan coba lagi.';
@@ -48,7 +63,7 @@
                 ?>
 
                 <!-- Form Register -->
-                <form action="/modules/auth/proses_register.php" method="post" id="formRegister">
+                <form action="modules/auth/proses_register.php" method="post" id="formRegister">
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="nama_lengkap" class="form-label">
@@ -83,12 +98,12 @@
                             </label>
                             <div class="input-group">
                                 <input type="password" class="form-control" id="password" name="password" 
-                                       placeholder="Minimal 6 karakter" required minlength="6">
+                                       placeholder="8-32 karakter, huruf besar kecil, angka" required minlength="8" maxlength="32" pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,32}">
                                 <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                                     <i class="fas fa-eye" id="eyeIcon"></i>
                                 </button>
                             </div>
-                            <small class="text-muted">Minimal 6 karakter</small>
+                            <small class="text-muted">8-32 karakter, harus mengandung huruf besar, huruf kecil, dan angka</small>
                         </div>
 
                         <div class="col-md-6 mb-3">
@@ -97,16 +112,12 @@
                             </label>
                             <div class="input-group">
                                 <input type="password" class="form-control" id="password_confirm" name="password_confirm" 
-                                       placeholder="Ulangi password" required minlength="6">
+                                       placeholder="Ulangi password" required minlength="8" maxlength="32">
                                 <button class="btn btn-outline-secondary" type="button" id="togglePasswordConfirm">
                                     <i class="fas fa-eye" id="eyeIconConfirm"></i>
                                 </button>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="mb-3 text-muted small">
-                        Registrasi baru akan disimpan sebagai role <strong>User</strong>. Hanya admin yang dapat mengubah role akun nanti.
                     </div>
 
                     <div class="mb-3 form-check">
@@ -122,6 +133,18 @@
                         </button>
                     </div>
                 </form>
+
+                <!-- Divider -->
+                <div class="divider d-flex align-items-center my-4">
+                    <p class="text-center mx-3 mb-0">ATAU</p>
+                </div>
+
+                <!-- Google Register Button -->
+                <div class="d-grid gap-2">
+                    <a href="<?php echo get_base_url(); ?>/modules/auth/google_register.php" class="btn btn-outline-danger btn-lg">
+                        <i class="fab fa-google me-2"></i>Daftar dengan Google
+                    </a>
+                </div>
 
                 <div class="text-center mt-4">
                     <p class="mb-0">Sudah punya akun? 
@@ -223,14 +246,8 @@ document.addEventListener('DOMContentLoaded', function() {
             return false;
         }
         
-        // Validate password length
-        if (password.length < 6) {
+        // Validate password length and strength
+        const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,32}$/;
+        if (!passwordRegex.test(password)) {
             e.preventDefault();
-            alert('Password minimal 6 karakter!');
-            return false;
-        }
-    });
-});
-</script>
-
-
+            alert('Password harus 8-32 karakter dan mengandung huruf besar, huruf kecil, serta angka!');
