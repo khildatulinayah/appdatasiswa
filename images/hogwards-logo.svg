@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7f3121"/>
+      <stop offset="100%" stop-color="#1f4b3d"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" rx="30" fill="#1d1f26"/>
+  <path d="M120 32 C80 32 48 62 48 94 V144 C48 176 80 208 120 208 C160 208 192 176 192 144 V94 C192 62 160 32 120 32 Z" fill="url(#g)" stroke="#f6d365" stroke-width="8"/>
+  <path d="M120 54 L120 186" stroke="#f6d365" stroke-width="6"/>
+  <path d="M72 96 C96 60 144 60 168 96" stroke="#f6d365" stroke-width="6" fill="none"/>
+  <text x="120" y="140" font-family="Georgia, serif" font-size="72" fill="#f6d365" text-anchor="middle">H</text>
+  <text x="120" y="182" font-family="Georgia, serif" font-size="20" fill="#f6d365" text-anchor="middle">HOGWARDS</text>
+</svg>
